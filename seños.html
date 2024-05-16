@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sueños.css">
+    <title> Afinando Sueños </title>
+
+    <style>
+        #carrito {
+            position: relative;
+            display: inline-block;
+        }
+
+        #carrito:hover .carrito-menu {
+            display: block;
+        }
+
+        .carrito-menu {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+    </style>
+
+<img class="carritoo" src="data:image/png;base64,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" onclick="agregarAlCarrito()" width="40" height="40">
+
+<div class="carritoo" id="carrito">
+  <h3>Carrito (<a id="contador">0</a>)</h3>
+  <div class="carrito-menu">
+    <p>Has agregado <a id="contador2">0</a> ítems a tu carrito.</p>
+  </div>
+</div>
+
+
+</head>
+<body>
+ 
+      
+    <Header class="Header">
+    <!-- Div contenido de la creacion del MENÚ -->
+        <div class="menu container" >
+            <a href="#" class="logo"> Instrumentos Musicales <span> Afinando Sueños </span></a>
+            <input type="checkbox" id="menu">
+            <label for="menu">
+                <img src="" class="menu-icono" alt="menu">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li> <a href="#">Inicio</a>
+                    <li> <a href="#">Servicios</a>
+                    <li> <a href="#">Productos</a>
+                    <li> <a href="#">Contáctanos</a>    
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    <!-- Contenido del HEADER -->    
+        <div class="header-content container">
+            <div class="header-txt">
+                <h1> Compra tus <span>  </span> <br> aquí y vive un sueño único </h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, unde ad veritatis provident
+                    enim aliquid natus explicabo nemo dolorem similique at dolores tenetur a repudiandae numquam consectetur
+                    deleniti amet quod.
+                </p>
+            <div class="butons">
+                <a href="#" class="btn-1">Información</a>
+                <a href="#" class="btn-1">Instrumentos</a>
+
+            </div>    
+            </div>
+        </div>
+    </Header>
+    <!--Apartado de Imagenes de los productos de la pagina separado por clases de instrumetos -->
+    <section class="popular container">
+
+        <h2> Guitarras acústicas </h2>
+        <div class="popular-content">
+            <img src="Imagenes/EKO CS-10 – Guitarra Acústica.png" alt="">
+            <img src="Imagenes/Epiphone Acustica Starling – Ebony.png" alt="">
+            <img src="Imagenes/Gibson J-45 Standard « Guitarra acústica.png" alt="">
+            <img src="Imagenes/VZ-XFP4111CB.png" alt="">
+            <img src="Imagenes/Guitarra Acústica Fender FA-125 Dreadnought .png" alt="">
+            <img src="Imagenes/Pack de Guitarra Acustica JAY TURSER - Jay J series JJ45-PAK-BK - Negro.png" alt="">
+        </div>
+
+        <h2> Pianos </h2>
+        <div class="popular-content">
+            <img src="Imagenes/Keyboard pro-350.png" alt="">
+            <img src="Imagenes/Piano KA130WH.png" alt="">
+            <img src="Imagenes/Piano KAG100BP.png" alt="">
+            <img src="Imagenes/Piano keyboard-pro 222lk_1.png" alt="">
+            <img src="Imagenes/Piano NUMA-COMPACT-2-1.png" alt="">
+            <img src="Imagenes/Mini Piano.png" alt="">
+            <img src="Imagenes/Nord Piano 5 Piano.png" alt="">
+            <img src="Imagenes/Medeli UP 203-Piano digital.png" alt="">
+            <img src="Imagenes/Yamaha psr-e 273_1.png" alt="">
+        </div>
+
+        <h2> Percusión </h2>
+        <div class="popular-content">
+            <img src="Imagenes/bombo.png" alt="">
+            <img src="Imagenes/bongos.png" alt="">
+            <img src="Imagenes/cajon.png" alt="">
+            <img src="Imagenes/crotalos.png" alt="">
+            <img src="Imagenes/maracas.png" alt="">
+            <img src="Imagenes/panereta.png" alt="">
+            <img src="Imagenes/platos.png" alt="">
+            <img src="Imagenes/redoblante.png" alt="">
+            <img src="Imagenes/triangulo.png" alt="">
+            <img src="Imagenes/xilofono.png" alt="">
+        </div>
+
+    </section>
+    <!--Ingreso de Precios para los productos presentados-->
+    <main class="product container">
+        <h2> Todos los Instrumentos     </h2>
+
+        <div class="product-content">
+            <div class="product-1">
+                <img src="Imagenes/EKO CS-10 – Guitarra Acústica.png" onclick="agregarAlCarrito()" alt="">
+                <div class="product-txt">
+                    <h3>Guitarra Lorem ipsum dolor sit </h3>
+                    <div class="price">
+                        <p> S/.137</p>
+                        <a href="#" class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-content">
+            <div class="product-1">
+                <img src="Imagenes/Epiphone Acustica Starling – Ebony.png" onclick="agregarAlCarrito()" alt="">
+                <div class="product-txt">
+                    <h3>Guitarra Lorem ipsum dolor sit </h3>
+                    <div class="price">
+                        <p> S/.137</p>
+                        <a href="#" class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-content">
+            <div class="product-1">
+                <img src="Imagenes/Gibson J-45 Standard « Guitarra acústica.png" onclick="agregarAlCarrito()" alt="">
+                <div class="product-txt">
+                    <h3>Guitarra Lorem ipsum dolor sit </h3>
+                    <div class="price">
+                        <p> S/.137</p>
+                        <a href="#" class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-content">
+            <div class="product-1">
+                <img src="Imagenes/VZ-XFP4111CB.png" onclick="agregarAlCarrito()" alt="">
+                <div class="product-txt">
+                    <h3>Guitarra Lorem ipsum dolor sit </h3>
+                    <div class="price">
+                        <p> S/.137</p>
+                        <a href="#" class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-content">
+            <div class="product-1">
+                <img src="Imagenes/Guitarra Acústica Fender FA-125 Dreadnought .png" onclick="agregarAlCarrito()" alt="">
+                <div class="product-txt">
+                    <h3>Guitarra Lorem ipsum dolor sit </h3>
+                    <div class="price">
+                        <p> S/.137</p>
+                        <a href="#" class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-content2">
+            <div class="product-1">
+                <img src="Imagenes/Piano KA130WH.png" onclick="agregarAlCarrito()" alt="">
+                <div class="product-txt">
+                    <h3>Guitarra Lorem ipsum dolor sit </h3>
+                    <div class="price">
+                        <p> S/.137</p>
+                        <a href="#" class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="product-content">
+            <div class="product-1">
+                <img src="Imagenes/Pack de Guitarra Acustica JAY TURSER - Jay J series JJ45-PAK-BK - Negro.png" onclick="agregarAlCarrito()" alt="" >
+                <div class="product-txt">
+                    <h3>Guitarra Lorem ipsum dolor sit </h3>
+                    <div class="price">
+                        <p> S/.137</p>
+                        <a href="#" class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+     
+        
+    </main>
+    <section class="contact container">
+        <div class="contact- content">
+            <h3> Déjanos tu correo para conversar contigo y brindarte un mejor asesoramiento </h3>
+            <Form>
+                <input type="email" placeholder="Escribre tu correo">
+                <input type="submit" class="btn-3" value="Enviar">
+            </Form>
+        </div>
+    </section>
+
+    <footer class="footer container">
+        <div class="link">
+            <a href="#" class="logo">Afinando Sueños</a>
+        </div>
+
+        <div class="link">
+            <ul>
+                <li> <a href="#">Inicio</a></li>
+                <li> <a href="#">Servicios</a></li>
+                <li> <a href="#">Productos</a></li>
+                <li> <a href="#">Contáctanos</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="sueñazo.js"></script>
+
+    
+</body>
+</html>
